@@ -3,6 +3,7 @@ import json
 import os
 import os.path
 import time
+import pandas as pd
 
 stocks_path = 'jsons/stocks.json'
 metrics_path = 'jsons/metrics/{}.json'
@@ -87,7 +88,10 @@ def download(force=False):
 
         i += 1
         
-            
+def load_dataframe(filename):
+    stock = load_json(filename)
+    df = pd.DataFrame.from_dict(stock, orient='columns').set_index('date')   
+    return df; 
             
 
 
